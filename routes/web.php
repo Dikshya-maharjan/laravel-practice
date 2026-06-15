@@ -14,3 +14,12 @@ Route::get('/goodbye',[PageController::class,'goodbye']);
 Route::get('/home',function(){
     return view('home');
 });
+
+use App\Http\Controllers\form\formcontroller;
+Route:: post('/submit', [formcontroller::class, 'submit']);
+Route::get('/form',function(){
+    return view('form');
+});
+use App\Http\Controllers\UserController;
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/first-user',[UserController::class,'firstRecord']);
