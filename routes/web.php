@@ -23,3 +23,8 @@ Route::get('/form',function(){
 use App\Http\Controllers\UserController;
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/first-user',[UserController::class,'firstRecord']);
+
+use App\Http\Controllers\EmployeeController;
+Route::get('/employees',[EmployeeController::class,'index']);
+Route::resource('employees',EmployeeController::class);
+Route::resource('roles',RoleController::class);
