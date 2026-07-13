@@ -10,6 +10,15 @@ class EmployeeController extends Controller
     //insert data
     public function store(Request $request){
         //this func runs when we submit form and store() saves data nto db
+
+    $request->validate([
+        'name' => 'required',
+        'email' => 'nullable|email',
+        'age' => 'required|integer',
+        'roles' => 'required|array|max:2',
+        'roles.*' => 'exists:roles,id'
+    ]);
+
         Employee::create([
             // db insert
             //get data from input
@@ -34,17 +43,18 @@ class EmployeeController extends Controller
     }
     public function edit($id){
         $employee=Employee::findorFail($id);
-        return view('employees.edit',compact('employee'));
+        $roles=Role::all();
+        return view('employees.edit',compact('employee','roles'));
     }
     public function update(Request $request,$id){
         $employee=Employee::findOrFail($id);
         $employee->update([
             'name'=>$request->name,
             'email'=>$request->email,
-            'age'=>$request->age
+            'role_id'=>$request->role_id
 
         ]);
-        return redirect()->route('employeess.index');
+        return redirect()->route('employees.index');
 
 
     }
