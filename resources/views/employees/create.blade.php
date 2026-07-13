@@ -1,11 +1,10 @@
 <form action="{{ route('employees.store') }}" method="POST">
     @csrf
 
-    <input type="text" name="name" placeholder="Name">
-    <input type="text" name="age" placeholder="Age">
-    <input type="email" name="email" placeholder="Email">
+    <input type="text" name="name" placeholder="Name"><br>
+    <input type="text" name="age" placeholder="Age"><br>
+    <input type="email" name="email" placeholder="Email"><br>
 
-    <!-- MUST BE INSIDE FORM -->
     <select name="role_id">
         <option value="">Select Role</option>
         @foreach($roles as $role)
