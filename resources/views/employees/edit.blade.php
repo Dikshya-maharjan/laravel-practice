@@ -6,7 +6,13 @@
 
     <input type="text" name="name" value="{{ $employee->name }}"><br>
     <input type="email" name="email" value="{{ $employee->email }}"><br>
-    <input type="number" name="salary" value="{{ $employee->salary }}"><br>
-
+ <select name="role_id">
+        @foreach($roles as $role)
+            <option value="{{ $role->id }}"
+                {{ $employee->role_id == $role->id ? 'selected' : '' }}>
+                {{ $role->name }}
+            </option>
+        @endforeach
+    </select><br><br>
     <button type="submit">Update</button>
 </form>
